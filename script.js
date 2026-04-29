@@ -69,4 +69,27 @@
   // Footer year
   const yr = document.querySelector('[data-year]');
   if (yr) yr.textContent = new Date().getFullYear();
+
+  // Scroll-to-top button — show once "The Week" section reaches the top of the viewport
+  const toTop = document.querySelector('[data-to-top]');
+  const weekSection = document.getElementById('week');
+  if (toTop && weekSection) {
+    toTop.hidden = false;
+    let visible = false;
+    const setVisible = (v) => {
+      if (v === visible) return;
+      visible = v;
+      toTop.classList.toggle('is-visible', v);
+    };
+    const onScroll = () => {
+      setVisible(weekSection.getBoundingClientRect().top <= 0);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    toTop.addEventListener('click', () => {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+  }
 })();

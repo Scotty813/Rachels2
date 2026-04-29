@@ -681,6 +681,42 @@ button { font: inherit; cursor: pointer; }
 }
 @media (max-width: 760px) { .foot__inner { grid-template-columns: 1fr; } }
 
+/* ---------- Scroll-to-top (mobile only) ---------- */
+.to-top {
+  position: fixed;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index: 90;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: rgba(22, 16, 19, 0.78);
+  color: var(--ink-dim);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.to-top[hidden] { display: none; }
+.to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.to-top:hover, .to-top:focus-visible {
+  color: var(--neon-2);
+  border-color: var(--neon);
+}
+@media (max-width: 760px) {
+  .to-top:not([hidden]) { display: inline-flex; }
+}
+
 /* ---------- Atmospheric grain ---------- */
 .grain {
   position: fixed; inset: 0; pointer-events: none; z-index: 100;

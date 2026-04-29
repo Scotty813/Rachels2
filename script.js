@@ -3,7 +3,7 @@
 
   const SPECIALS = {
     0: { label: 'Sunday Funday', items: ['$2 domestic beers', '$3 wells until 6pm', 'Free pool until 8pm', 'Kitchen open late'] },
-    1: { label: 'Manic Monday',  items: ['Happy hour 3–6pm', 'Free pool 3–8pm', 'Darts tournament 8pm', 'APA league 9-ball 7pm'] },
+    1: { label: 'Manic Monday',  items: ['Happy hour 3–6pm', 'Free pool 3–8pm', 'APA league 9-ball 7pm', 'Darts tournament 8pm',] },
     2: { label: 'Taco Tuesday',  items: ['$1 beef or chicken tacos', 'Happy hour 3–6pm', 'Free pool 3–8pm', '9-ball cash tourney 8pm'] },
     3: { label: 'League Night',  items: ['APA 8-ball league 7pm', 'Happy hour 3–6pm', 'Free pool 3–8pm', 'Sports on every screen'] },
     4: { label: '75¢ Wings',     items: ['75¢ wings all night', 'Happy hour 3–6pm', 'Free pool 3–8pm', "Bartender's pick shots"] },

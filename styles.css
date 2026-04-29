@@ -213,13 +213,13 @@ button { font: inherit; cursor: pointer; }
   position: absolute; inset: 0;
   background-image: url('img/rachels-pool-room.webp');
   background-size: cover; background-position: center;
-  filter: brightness(0.42) saturate(1.05);
+  filter: brightness(0.55) saturate(1.05);
 }
 .hero__bg::after {
   content: ''; position: absolute; inset: 0;
   background:
     radial-gradient(60% 80% at 70% 40%, rgba(255,45,138,0.18), transparent 60%),
-    linear-gradient(180deg, rgba(14,10,12,0.45) 0%, rgba(14,10,12,0.85) 80%, var(--bg) 100%);
+    linear-gradient(180deg, rgba(14,10,12,0.3) 0%, rgba(14,10,12,0.88) 80%, var(--bg) 100%);
 }
 .hero__inner { position: relative; padding-top: 30px; }
 .hero__kicker {

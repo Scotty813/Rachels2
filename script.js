@@ -66,6 +66,52 @@
     }
   });
 
+  // Week slider — horizontal carousel on >=1101px
+  const weekTrack = document.querySelector('[data-week]');
+  const weekPrev = document.querySelector('[data-week-prev]');
+  const weekNext = document.querySelector('[data-week-next]');
+  if (weekTrack && weekPrev && weekNext) {
+    const mq = window.matchMedia('(min-width: 1101px)');
+
+    const updateButtons = () => {
+      const max = weekTrack.scrollWidth - weekTrack.clientWidth;
+      weekPrev.disabled = weekTrack.scrollLeft <= 1;
+      weekNext.disabled = weekTrack.scrollLeft >= max - 1;
+    };
+
+    weekPrev.addEventListener('click', () => {
+      weekTrack.scrollTo({ left: 0, behavior: 'smooth' });
+    });
+    weekNext.addEventListener('click', () => {
+      weekTrack.scrollTo({
+        left: weekTrack.scrollWidth - weekTrack.clientWidth,
+        behavior: 'smooth'
+      });
+    });
+    weekTrack.addEventListener('scroll', updateButtons, { passive: true });
+    window.addEventListener('resize', updateButtons);
+
+    const sync = () => {
+      const active = mq.matches;
+      weekPrev.hidden = !active;
+      weekNext.hidden = !active;
+      if (active) {
+        // Bring today's card into view on first activation
+        const todayCol = weekTrack.querySelector('.week__col.active');
+        if (todayCol) {
+          weekTrack.scrollLeft = Math.max(
+            0,
+            todayCol.offsetLeft - weekTrack.offsetLeft
+          );
+        }
+        updateButtons();
+      }
+    };
+    sync();
+    if (mq.addEventListener) mq.addEventListener('change', sync);
+    else if (mq.addListener) mq.addListener(sync);
+  }
+
   // Footer year
   const yr = document.querySelector('[data-year]');
   if (yr) yr.textContent = new Date().getFullYear();

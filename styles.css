@@ -344,8 +344,7 @@ button { font: inherit; cursor: pointer; }
 /* ---------- The Week (specials) ---------- */
 .week {
   display: grid; grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 0; border: 1px solid var(--line);
-  border-radius: 4px; overflow: hidden;
+  gap: 0;
 }
 .week__col {
   padding: 28px 22px;
@@ -356,11 +355,56 @@ button { font: inherit; cursor: pointer; }
   min-height: 360px;
   display: flex; flex-direction: column; justify-content: space-between;
 }
+.week-slider { position: relative; }
+.week__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 44px; height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  background: rgba(22, 16, 19, 0.92);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--ink);
+  display: none;
+  align-items: center; justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  transition: opacity 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.week__nav[hidden] { display: none; }
+.week__nav:hover, .week__nav:focus-visible {
+  color: var(--neon-2);
+  border-color: var(--neon);
+}
+.week__nav:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  color: var(--ink-mute);
+  border-color: var(--line);
+}
+.week__nav--prev { left: -22px; }
+.week__nav--next { right: -22px; }
 @media (min-width: 1101px) {
-  .week__col { padding: 24px 16px; min-height: 320px; }
-  .week__title { font-size: 26px; margin: 12px 0 14px; }
-  .week__deal { font-size: 28px; margin-bottom: 12px; }
-  .week__list li { font-size: 12px; }
+  .week {
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+  }
+  .week::-webkit-scrollbar { display: none; }
+  .week__col {
+    flex: 0 0 calc(25% + 0.25px);
+    scroll-snap-align: start;
+  }
+  .week__nav:not([hidden]) { display: inline-flex; }
 }
 .week__col:last-child { border-right: 0; }
 .week__col:hover { background: var(--bg-3); }

@@ -247,9 +247,6 @@
             Ave · Where one drink turns into three
           </p>
           <h1 id="hero-title">
-            <span class="script-overlay" aria-hidden="true"
-              >your seat&rsquo;s still warm</span
-            >
             <span class="pink">Rachel&rsquo;s</span><br />
             Place
           </h1>
@@ -340,7 +337,28 @@
             </p>
           </div>
 
-          <div class="week" data-week>
+          <div class="week-slider">
+            <button
+              class="week__nav week__nav--prev"
+              type="button"
+              data-week-prev
+              aria-label="Previous days"
+              aria-controls="week-track"
+              hidden
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button
+              class="week__nav week__nav--next"
+              type="button"
+              data-week-next
+              aria-label="Next days"
+              aria-controls="week-track"
+              hidden
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="week" id="week-track" data-week>
             <article class="week__col" data-day="1">
               <div>
                 <h3 class="week__day">Monday</h3>
@@ -432,6 +450,7 @@
                 <li>Kitchen open late</li>
               </ul>
             </article>
+            </div>
           </div>
         </div>
       </section>

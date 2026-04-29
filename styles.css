@@ -291,7 +291,7 @@ button { font: inherit; cursor: pointer; }
 
 /* ---------- The Week (specials) ---------- */
 .week {
-  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  display: grid; grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 0; border: 1px solid var(--line);
   border-radius: 4px; overflow: hidden;
 }
@@ -319,7 +319,6 @@ button { font: inherit; cursor: pointer; }
   font-family: 'Anton', sans-serif;
   font-size: 36px; line-height: 0.95; margin: 14px 0 18px; text-transform: uppercase;
 }
-.week__col:nth-child(1) .week__title { font-size: 44px; }
 .week__deal {
   font-family: 'Caveat', cursive; font-weight: 700; font-size: 38px; line-height: 1;
   color: var(--amber);
@@ -336,17 +335,18 @@ button { font: inherit; cursor: pointer; }
   margin-top: 9px;
 }
 @media (max-width: 1100px) {
-  .week { grid-template-columns: 1fr 1fr 1fr; }
-  .week__col:nth-child(1) { grid-column: span 3; }
+  .week { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .week__col { border-bottom: 1px solid var(--line); }
+  .week__col:nth-child(3n) { border-right: 0; }
 }
 @media (max-width: 760px) {
-  .week { grid-template-columns: 1fr 1fr; }
-  .week__col:nth-child(1) { grid-column: span 2; }
+  .week { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .week__col:nth-child(3n) { border-right: 1px solid var(--line); }
+  .week__col:nth-child(2n) { border-right: 0; }
 }
 @media (max-width: 540px) {
   .week { grid-template-columns: 1fr; }
-  .week__col:nth-child(1) { grid-column: span 1; }
-  .week__col { border-right: 0; }
+  .week__col { border-right: 0 !important; }
 }
 
 /* ---------- Tournaments ---------- */
@@ -417,15 +417,26 @@ button { font: inherit; cursor: pointer; }
 .apa-card__title .felt { color: var(--felt); }
 .apa-card__copy p { color: var(--ink-dim); font-size: 15px; margin: 0; }
 
-/* ---------- Photo wall ---------- */
+/* ---------- Photo wall (masonry) ---------- */
 .wall {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: 120px;
-  gap: 10px;
+  column-count: 3;
+  column-gap: 10px;
 }
-.wall figure { margin: 0; position: relative; overflow: hidden; background: var(--bg-2); border-radius: 2px; }
-.wall figure img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.wall figure {
+  margin: 0 0 10px;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-2);
+  border-radius: 2px;
+  break-inside: avoid;
+  display: block;
+}
+.wall figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s ease;
+}
 .wall figure:hover img { transform: scale(1.04); }
 .wall figure figcaption {
   position: absolute; bottom: 8px; left: 10px;
@@ -434,18 +445,11 @@ button { font: inherit; cursor: pointer; }
   text-shadow: 0 2px 12px rgba(0,0,0,0.8);
   pointer-events: none;
 }
-.w-a { grid-column: span 5; grid-row: span 3; }
-.w-b { grid-column: span 4; grid-row: span 2; }
-.w-c { grid-column: span 3; grid-row: span 2; }
-.w-d { grid-column: span 4; grid-row: span 2; }
-.w-e { grid-column: span 3; grid-row: span 3; }
-.w-f { grid-column: span 5; grid-row: span 2; }
-.w-g { grid-column: span 4; grid-row: span 2; }
-.w-h { grid-column: span 3; grid-row: span 2; }
-@media (max-width: 760px) {
-  .wall { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; }
-  .wall figure { grid-column: span 1 !important; grid-row: span 1 !important; }
-  .wall figure.w-a { grid-column: span 2 !important; grid-row: span 2 !important; }
+@media (max-width: 980px) {
+  .wall { column-count: 2; }
+}
+@media (max-width: 540px) {
+  .wall { column-count: 1; }
 }
 
 /* ---------- Pour list ---------- */

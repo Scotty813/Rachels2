@@ -65,7 +65,9 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  scroll-padding-top: 72px;
 }
+section[id] { scroll-margin-top: 72px; }
 body {
   background: var(--bg);
   color: var(--ink);
@@ -681,13 +683,24 @@ button { font: inherit; cursor: pointer; }
 }
 @media (max-width: 760px) { .foot__inner { grid-template-columns: 1fr; } }
 
-/* ---------- Scroll-to-top (mobile only) ---------- */
-.to-top {
+/* ---------- Floating nav menu (mobile only) ---------- */
+.nav-fab {
   position: fixed;
   right: 16px;
   bottom: calc(16px + env(safe-area-inset-bottom, 0px));
   z-index: 90;
   display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+.nav-fab[hidden] { display: none; }
+@media (max-width: 760px) {
+  .nav-fab:not([hidden]) { display: flex; }
+}
+
+.nav-fab__btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 42px;
@@ -704,17 +717,77 @@ button { font: inherit; cursor: pointer; }
   transform: translateY(8px);
   transition: opacity 0.25s ease, transform 0.25s ease, color 0.2s ease, border-color 0.2s ease;
 }
-.to-top[hidden] { display: none; }
-.to-top.is-visible {
+.nav-fab.is-visible .nav-fab__btn {
   opacity: 1;
   transform: translateY(0);
 }
-.to-top:hover, .to-top:focus-visible {
+.nav-fab__btn:hover, .nav-fab__btn:focus-visible {
   color: var(--neon-2);
   border-color: var(--neon);
 }
-@media (max-width: 760px) {
-  .to-top:not([hidden]) { display: inline-flex; }
+.nav-fab__icon { display: block; }
+.nav-fab__icon--close { display: none; }
+.nav-fab.is-open .nav-fab__icon--menu { display: none; }
+.nav-fab.is-open .nav-fab__icon--close { display: block; }
+.nav-fab.is-open .nav-fab__btn {
+  color: var(--neon-2);
+  border-color: var(--neon);
+}
+
+.nav-fab__menu {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 180px;
+  padding: 6px;
+  border: 1px solid var(--line-2);
+  border-radius: 14px;
+  background: rgba(22, 16, 19, 0.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  transform-origin: bottom right;
+  opacity: 0;
+  transform: translateY(6px) scale(0.97);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  pointer-events: none;
+}
+.nav-fab__menu[hidden] { display: none; }
+.nav-fab.is-open .nav-fab__menu {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.nav-fab__menu a,
+.nav-fab__menu .nav-fab__top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink-dim);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-align: left;
+  cursor: pointer;
+}
+.nav-fab__menu a:hover,
+.nav-fab__menu a:focus-visible,
+.nav-fab__menu .nav-fab__top:hover,
+.nav-fab__menu .nav-fab__top:focus-visible {
+  background: rgba(255, 45, 138, 0.08);
+  color: var(--neon-2);
+  outline: none;
+}
+.nav-fab__top {
+  margin-top: 4px;
+  border-top: 1px solid var(--line) !important;
+  border-radius: 0 0 10px 10px !important;
+  padding-top: 12px !important;
+  color: var(--ink) !important;
 }
 
 /* ---------- Atmospheric grain ---------- */

@@ -221,7 +221,7 @@
           <span class="sr-only">Rachel's Place</span>
         </a>
         <nav class="nav" aria-label="Primary">
-          <a href="#week">The Week</a>
+          <a href="#week">Weekly specials</a>
           <a href="#games">Games</a>
           <a href="#room">The Room</a>
           <a href="#pour">Pour List</a>
@@ -318,7 +318,7 @@
         <div class="wrap">
           <div class="section__hd">
             <div>
-              <p class="eyebrow">The Week / 01</p>
+              <p class="eyebrow">Weekly specials / 01</p>
               <h2 id="week-title">
                 Pick your <span class="neon">night.</span>
               </h2>
@@ -572,6 +572,8 @@
               <img
                 src="img/gallery-rachels-selfie.webp"
                 alt="Late-night selfie of regulars behind the bar at closing time."
+                width="1684"
+                height="2234"
                 loading="eager"
                 decoding="async"
               />
@@ -581,6 +583,8 @@
               <img
                 src="img/gallery-wings-service.webp"
                 alt="A hot order of wings being delivered to a table."
+                width="1668"
+                height="2114"
                 loading="eager"
                 decoding="async"
               />
@@ -590,6 +594,8 @@
               <img
                 src="img/rachels-pool-room.webp"
                 alt="Four felt-top pool tables under warm bar lighting at Rachel's Place."
+                width="1360"
+                height="1020"
                 loading="eager"
                 decoding="async"
               />
@@ -599,6 +605,8 @@
               <img
                 src="img/gallery-espresso-martinis.webp"
                 alt="Two espresso martinis on the bar with crema on top."
+                width="1262"
+                height="2246"
                 loading="lazy"
                 decoding="async"
               />
@@ -608,6 +616,8 @@
               <img
                 src="img/rachels-pool-group.jpg"
                 alt="A group of cash-tournament winners holding cues at the pool table."
+                width="1536"
+                height="2048"
                 loading="lazy"
                 decoding="async"
               />
@@ -617,6 +627,8 @@
               <img
                 src="img/rachels-bar-friends.webp"
                 alt="Three friends taking fireball shots at the bar."
+                width="1360"
+                height="765"
                 loading="lazy"
                 decoding="async"
               />
@@ -626,6 +638,8 @@
               <img
                 src="img/rachels-team-pool.jpg"
                 alt="An APA league team gathered around the pool table on team night."
+                width="2048"
+                height="2048"
                 loading="lazy"
                 decoding="async"
               />
@@ -635,6 +649,8 @@
               <img
                 src="img/gallery-dollar-tacos.webp"
                 alt="A plate of dollar tacos served on Tuesday."
+                width="1248"
+                height="894"
                 loading="lazy"
                 decoding="async"
               />
@@ -644,6 +660,8 @@
               <img
                 src="img/rachels-exterior.webp"
                 alt="The pink-neon Rachel's Place storefront at 10061 W. Hillsborough Ave at night."
+                width="1360"
+                height="1020"
                 loading="lazy"
                 decoding="async"
               />
@@ -659,6 +677,8 @@
             <img
               src="img/rachels-pool-room.webp"
               alt="The pool room at Rachel's Place, with neon-lit walls and felt-topped tables."
+              width="1360"
+              height="1020"
               loading="lazy"
               decoding="async"
             />
@@ -1072,7 +1092,7 @@
         <nav aria-labelledby="foot-site">
           <h2 id="foot-site">The Site</h2>
           <ul>
-            <li><a href="#week">The Week</a></li>
+            <li><a href="#week">Weekly specials</a></li>
             <li><a href="#games">Games &amp; tournaments</a></li>
             <li><a href="#room">The Room</a></li>
             <li><a href="#pour">Pour List</a></li>
@@ -1103,28 +1123,83 @@
       </div>
     </footer>
 
-    <button
-      type="button"
-      class="to-top"
-      data-to-top
-      aria-label="Back to top"
-      hidden
-    >
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.25"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        aria-hidden="true"
+    <div class="nav-fab" data-nav-fab hidden>
+      <div
+        id="nav-fab-menu"
+        class="nav-fab__menu"
+        role="menu"
+        aria-label="Site navigation"
+        hidden
       >
-        <path d="M12 19V5" />
-        <path d="M5 12l7-7 7 7" />
-      </svg>
-    </button>
+        <a href="#week" role="menuitem">Weekly specials</a>
+        <a href="#games" role="menuitem">Games</a>
+        <a href="#room" role="menuitem">The Room</a>
+        <a href="#pour" role="menuitem">Pour List</a>
+        <a href="#visit" role="menuitem">Visit</a>
+        <button
+          type="button"
+          class="nav-fab__top"
+          data-nav-fab-top
+          role="menuitem"
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.25"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M12 19V5" />
+            <path d="M5 12l7-7 7 7" />
+          </svg>
+          Back to top
+        </button>
+      </div>
+      <button
+        type="button"
+        class="nav-fab__btn"
+        data-nav-fab-toggle
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="nav-fab-menu"
+      >
+        <svg
+          class="nav-fab__icon nav-fab__icon--menu"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M4 7h16" />
+          <path d="M4 12h16" />
+          <path d="M4 17h16" />
+        </svg>
+        <svg
+          class="nav-fab__icon nav-fab__icon--close"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M6 6l12 12" />
+          <path d="M18 6L6 18" />
+        </svg>
+      </button>
+    </div>
 
     <script src="script.js" defer></script>
   </body>

@@ -70,16 +70,20 @@
   const yr = document.querySelector('[data-year]');
   if (yr) yr.textContent = new Date().getFullYear();
 
-  // Scroll-to-top button — show once "The Week" section reaches the top of the viewport
-  const toTop = document.querySelector('[data-to-top]');
+  // Floating nav menu — show once "The Week" section reaches the top of the viewport
+  const navFab = document.querySelector('[data-nav-fab]');
+  const navFabToggle = document.querySelector('[data-nav-fab-toggle]');
+  const navFabMenu = document.getElementById('nav-fab-menu');
+  const navFabTop = document.querySelector('[data-nav-fab-top]');
   const weekSection = document.getElementById('week');
-  if (toTop && weekSection) {
-    toTop.hidden = false;
+  if (navFab && navFabToggle && navFabMenu && weekSection) {
+    navFab.hidden = false;
     let visible = false;
     const setVisible = (v) => {
       if (v === visible) return;
       visible = v;
-      toTop.classList.toggle('is-visible', v);
+      navFab.classList.toggle('is-visible', v);
+      if (!v) closeMenu();
     };
     const onScroll = () => {
       setVisible(weekSection.getBoundingClientRect().top <= 0);
@@ -87,9 +91,49 @@
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
-    toTop.addEventListener('click', () => {
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+
+    const openMenu = () => {
+      navFabMenu.hidden = false;
+      // force a reflow so the transition runs from the hidden→shown state
+      void navFabMenu.offsetWidth;
+      navFab.classList.add('is-open');
+      navFabToggle.setAttribute('aria-expanded', 'true');
+      navFabToggle.setAttribute('aria-label', 'Close menu');
+    };
+    const closeMenu = () => {
+      if (!navFab.classList.contains('is-open')) return;
+      navFab.classList.remove('is-open');
+      navFabToggle.setAttribute('aria-expanded', 'false');
+      navFabToggle.setAttribute('aria-label', 'Open menu');
+      // hide after the transition so it's removed from the a11y tree
+      window.setTimeout(() => {
+        if (!navFab.classList.contains('is-open')) navFabMenu.hidden = true;
+      }, 200);
+    };
+    const toggleMenu = () => {
+      if (navFab.classList.contains('is-open')) closeMenu();
+      else openMenu();
+    };
+
+    navFabToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+    navFabMenu.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => closeMenu());
+    });
+    if (navFabTop) {
+      navFabTop.addEventListener('click', () => {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+        closeMenu();
+      });
+    }
+    document.addEventListener('click', (e) => {
+      if (!navFab.contains(e.target)) closeMenu();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
     });
   }
 })();

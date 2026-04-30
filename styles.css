@@ -990,6 +990,7 @@ button { font: inherit; cursor: pointer; }
   display: inline-flex; align-items: center; justify-content: center;
   font-family: 'Anton', sans-serif; font-size: 14px; color: var(--neon);
 }
+.pour__subhead { margin: -10px 0 22px; color: var(--ink-dim); font-size: 15px; line-height: 1.5; }
 .pour__list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
 .pour__list li { display: flex; gap: 16px; align-items: baseline; font-size: 16px; }
 .pour__list li .name { color: var(--ink); font-weight: 500; }

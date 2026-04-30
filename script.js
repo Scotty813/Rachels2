@@ -125,19 +125,6 @@
   if (navFab && navFabToggle && navFabMenu && weekSection) {
     navFab.hidden = false;
     let visible = false;
-    const setVisible = (v) => {
-      if (v === visible) return;
-      visible = v;
-      navFab.classList.toggle('is-visible', v);
-      if (!v) closeMenu();
-    };
-    const onScroll = () => {
-      setVisible(weekSection.getBoundingClientRect().top <= 0);
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-
     const openMenu = () => {
       navFabMenu.hidden = false;
       // force a reflow so the transition runs from the hidden→shown state
@@ -160,6 +147,31 @@
       if (navFab.classList.contains('is-open')) closeMenu();
       else openMenu();
     };
+    const setVisible = (v) => {
+      if (v === visible) return;
+      visible = v;
+      navFab.classList.toggle('is-visible', v);
+      if (!v) closeMenu();
+    };
+
+    if ('IntersectionObserver' in window) {
+      const sentinel = document.createElement('span');
+      sentinel.setAttribute('aria-hidden', 'true');
+      sentinel.style.cssText = 'display:block;width:1px;height:1px;pointer-events:none;';
+      weekSection.before(sentinel);
+
+      const observer = new IntersectionObserver(([entry]) => {
+        setVisible(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+      });
+      observer.observe(sentinel);
+    } else {
+      const onScroll = () => {
+        setVisible(weekSection.getBoundingClientRect().top <= 0);
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+    }
 
     navFabToggle.addEventListener('click', (e) => {
       e.stopPropagation();

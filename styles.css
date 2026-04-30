@@ -745,9 +745,165 @@ button { font: inherit; cursor: pointer; }
   display: flex; flex-direction: column; gap: 22px;
   min-height: 360px;
 }
+.tourney__graphic {
+  position: relative;
+  height: 132px;
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  border-radius: 4px;
+  background:
+    radial-gradient(circle at 24% 22%, rgba(244,236,226,0.14), transparent 12%),
+    radial-gradient(circle at 78% 24%, rgba(255,180,58,0.13), transparent 17%),
+    linear-gradient(135deg, rgba(31,138,107,0.18), rgba(255,45,138,0.12) 48%, rgba(0,0,0,0.08));
+  box-shadow: inset 0 0 28px rgba(0,0,0,0.36);
+}
+.tourney__graphic::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(244,236,226,0.08);
+  border-radius: 3px;
+}
+.tourney__graphic::after {
+  content: '';
+  position: absolute;
+  left: -18%;
+  right: -18%;
+  bottom: 0;
+  height: 44px;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.26));
+}
+.tourney__graphic span {
+  position: absolute;
+  display: block;
+}
+.tourney__graphic--darts { background-color: #171015; }
+.tourney__graphic--nine { background-color: #121812; }
+.tourney__graphic--eight { background-color: #111417; }
+.game-dartboard {
+  left: 30px;
+  top: 28px;
+  width: 76px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 16px solid #131011;
+  background:
+    radial-gradient(circle, var(--crimson) 0 10%, #f4ece2 11% 19%, #181313 20% 31%, transparent 32%),
+    conic-gradient(#f4ece2 0 12deg, #171212 12deg 24deg, var(--crimson) 24deg 36deg, var(--felt) 36deg 48deg, #f4ece2 48deg 60deg, #171212 60deg 72deg);
+  box-shadow: 0 0 22px rgba(255,45,138,0.26);
+}
+.game-dart {
+  right: 34px;
+  width: 62px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f4ece2 0 58%, var(--amber) 59% 73%, var(--neon) 74%);
+  transform-origin: right center;
+  z-index: 1;
+}
+.game-dart::before {
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: -5px;
+  border-left: 13px solid #8fd5ff;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+}
+.game-dart--one { top: 48px; transform: rotate(-25deg); }
+.game-dart--two { top: 78px; right: 46px; transform: rotate(19deg); }
+.pool-rail {
+  left: 22px;
+  right: 22px;
+  bottom: 24px;
+  height: 44px;
+  border-radius: 22px;
+  background:
+    linear-gradient(90deg, rgba(244,236,226,0.08) 0 8%, transparent 8% 17%, rgba(244,236,226,0.08) 17% 25%, transparent 25% 100%),
+    linear-gradient(180deg, rgba(31,138,107,0.82), #0e3d34);
+  border: 2px solid rgba(244,236,226,0.12);
+  box-shadow: inset 0 0 18px rgba(0,0,0,0.42);
+}
+.game-cue {
+  right: 24px;
+  top: 32px;
+  width: 128px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f4ece2 0 12%, #b78958 13% 74%, #5c351f 75%);
+  transform: rotate(-20deg);
+  z-index: 1;
+}
+.game-ball {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow:
+    inset -8px -9px 0 rgba(0,0,0,0.24),
+    0 0 18px rgba(255,180,58,0.2);
+  z-index: 2;
+}
+.game-ball::before {
+  content: '';
+  position: absolute;
+  left: 22%;
+  top: 18%;
+  width: 18%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.68);
+}
+.game-ball::after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 34%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4ece2;
+  color: #141012;
+  font-family: 'Anton', sans-serif;
+  font-size: 17px;
+  line-height: 1;
+}
+.game-ball--nine {
+  left: 48px;
+  top: 36px;
+  width: 72px;
+  background:
+    linear-gradient(180deg, transparent 0 33%, #ffb43a 34% 66%, transparent 67%),
+    #f4ece2;
+}
+.game-ball--nine::after { content: '9'; }
+.game-ball--eight {
+  left: 48px;
+  top: 36px;
+  width: 72px;
+  background: #101010;
+}
+.game-ball--eight::after { content: '8'; }
+.game-ball--cue {
+  right: 86px;
+  bottom: 40px;
+  width: 34px;
+  background: #f4ece2;
+}
+.game-ball--cue::after { content: none; }
+.game-ball--stripe {
+  right: 64px;
+  bottom: 42px;
+  width: 44px;
+  background:
+    linear-gradient(180deg, #f4ece2 0 30%, var(--crimson) 31% 69%, #f4ece2 70%);
+}
+.game-ball--stripe::after { content: none; }
 .tourney__type {
   font-family: ui-monospace, 'SF Mono', Menlo, monospace;
   font-size: 11px; letter-spacing: 0.22em; color: var(--ink-mute); text-transform: uppercase;
+  margin-bottom: 0px;
 }
 .tourney h3 {
   font-family: 'Anton', sans-serif; font-size: 38px; line-height: 1.05;

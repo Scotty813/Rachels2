@@ -116,6 +116,58 @@
   const yr = document.querySelector('[data-year]');
   if (yr) yr.textContent = new Date().getFullYear();
 
+  const topbar = document.querySelector('.topbar');
+  const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const getScrollOffset = () => {
+    const topbarHeight = topbar ? Math.ceil(topbar.getBoundingClientRect().height) : 0;
+    return topbarHeight + 12;
+  };
+  const syncScrollOffset = () => {
+    document.documentElement.style.setProperty('--scroll-offset', getScrollOffset() + 'px');
+  };
+  const getHashTarget = (hash) => {
+    if (!hash || hash === '#') return null;
+    try {
+      return document.getElementById(decodeURIComponent(hash.slice(1)));
+    } catch (e) {
+      return null;
+    }
+  };
+  const scrollToHash = (hash, options = {}) => {
+    const target = getHashTarget(hash);
+    if (!target) return false;
+
+    syncScrollOffset();
+    const offset = getScrollOffset();
+    const targetTop = hash === '#top'
+      ? 0
+      : Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - offset);
+    const behavior = prefersReducedMotion() ? 'auto' : options.behavior || 'smooth';
+
+    window.scrollTo({ top: targetTop, behavior });
+    if (options.updateHash !== false && window.location.hash !== hash) {
+      window.history.pushState(null, '', window.location.pathname + window.location.search + hash);
+    }
+    return true;
+  };
+
+  syncScrollOffset();
+  window.addEventListener('resize', syncScrollOffset);
+  window.addEventListener('hashchange', () => {
+    scrollToHash(window.location.hash, { behavior: 'auto', updateHash: false });
+  });
+  window.addEventListener('load', () => {
+    const correctHashScroll = () => {
+      if (window.location.hash) {
+        scrollToHash(window.location.hash, { behavior: 'auto', updateHash: false });
+      }
+    };
+    window.requestAnimationFrame(correctHashScroll);
+    window.setTimeout(correctHashScroll, 300);
+  });
+
+  let closeFloatingNav = () => {};
+
   // Floating nav menu — always visible on mobile (topbar nav is hidden there);
   // on larger screens, appears once "The Week" section reaches the top of the viewport.
   const navFab = document.querySelector('[data-nav-fab]');
@@ -144,6 +196,7 @@
         if (!navFab.classList.contains('is-open')) navFabMenu.hidden = true;
       }, 200);
     };
+    closeFloatingNav = closeMenu;
     const toggleMenu = () => {
       if (navFab.classList.contains('is-open')) closeMenu();
       else openMenu();
@@ -204,8 +257,7 @@
     });
     if (navFabTop) {
       navFabTop.addEventListener('click', () => {
-        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+        scrollToHash('#top', { updateHash: false });
         closeMenu();
       });
     }
@@ -216,4 +268,26 @@
       if (e.key === 'Escape') closeMenu();
     });
   }
+
+  document.querySelectorAll('a[href^="#"]:not(.skip-link)').forEach((anchor) => {
+    const hash = anchor.getAttribute('href');
+    if (!getHashTarget(hash)) return;
+
+    anchor.addEventListener('click', (e) => {
+      if (
+        e.defaultPrevented ||
+        e.button !== 0 ||
+        e.metaKey ||
+        e.ctrlKey ||
+        e.shiftKey ||
+        e.altKey
+      ) {
+        return;
+      }
+
+      e.preventDefault();
+      scrollToHash(hash);
+      closeFloatingNav();
+    });
+  });
 })();

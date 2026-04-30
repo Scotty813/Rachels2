@@ -65,7 +65,7 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  scroll-padding-top: 72px;
+  scroll-padding-top: var(--scroll-offset, 72px);
 }
 body {
   background: var(--bg);
@@ -269,11 +269,9 @@ button { font: inherit; cursor: pointer; }
 
 /* ---------- Section header ---------- */
 .section { padding: 90px 0; position: relative; }
-@supports (content-visibility: auto) {
-  .section {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 900px;
-  }
+.hero,
+.section {
+  scroll-margin-top: var(--scroll-offset, 72px);
 }
 .section__hd {
   display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: end;

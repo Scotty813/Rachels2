@@ -352,7 +352,7 @@ button { font: inherit; cursor: pointer; }
   background: var(--bg-2);
   transition: background 0.25s ease;
   position: relative;
-  min-height: 360px;
+  min-height: 500px;
   display: flex; flex-direction: column; justify-content: space-between;
 }
 .week-slider { position: relative; }
@@ -428,6 +428,292 @@ button { font: inherit; cursor: pointer; }
   margin: 0 0 14px;
 }
 .week__col.active .week__deal { color: var(--neon-2); }
+.week__graphic {
+  position: relative;
+  height: 124px;
+  margin: 22px 0 4px;
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  border-radius: 4px;
+  background:
+    radial-gradient(circle at 24% 20%, rgba(255,255,255,0.16), transparent 10%),
+    radial-gradient(circle at 80% 18%, rgba(255,180,58,0.16), transparent 18%),
+    linear-gradient(135deg, rgba(31,138,107,0.25), rgba(255,45,138,0.12) 46%, rgba(0,0,0,0.1));
+  box-shadow: inset 0 0 28px rgba(0,0,0,0.35);
+}
+.week__graphic::before {
+  content: '';
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(244,236,226,0.08);
+  border-radius: 3px;
+}
+.week__graphic::after {
+  content: '';
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  bottom: 0;
+  height: 42px;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.26));
+}
+.week__graphic span {
+  position: absolute;
+  display: block;
+}
+.week__graphic--darts { background-color: #181015; }
+.week__graphic .dartboard {
+  left: 22px;
+  top: 22px;
+  width: 78px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 7px solid #151111;
+  background:
+    radial-gradient(circle, var(--crimson) 0 8%, #f4ece2 9% 14%, #1a1414 15% 23%, transparent 24%),
+    conic-gradient(#f4ece2 0 10deg, #121010 10deg 20deg, var(--crimson) 20deg 30deg, #1f8a6b 30deg 40deg, #f4ece2 40deg 50deg, #121010 50deg 60deg);
+  box-shadow: 0 0 18px rgba(255,45,138,0.28);
+}
+.week__graphic .dart {
+  width: 48px;
+  height: 7px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f4ece2 0 60%, var(--amber) 60% 76%, var(--neon) 76%);
+  transform-origin: right center;
+}
+.week__graphic .dart::before {
+  content: '';
+  position: absolute;
+  right: -9px;
+  top: -4px;
+  border-left: 12px solid #8fd5ff;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+.week__graphic .dart--one { right: 24px; top: 44px; transform: rotate(-24deg); }
+.week__graphic .dart--two { right: 34px; top: 78px; transform: rotate(18deg); }
+
+.week__graphic--tacos { background-color: #21140c; }
+.week__graphic .taco {
+  bottom: 24px;
+  width: 78px;
+  height: 44px;
+  border-radius: 80px 80px 12px 12px;
+  background:
+    radial-gradient(circle at 26% 45%, #d2382b 0 5px, transparent 6px),
+    radial-gradient(circle at 56% 35%, #1f8a6b 0 5px, transparent 6px),
+    radial-gradient(circle at 72% 50%, #ffb43a 0 4px, transparent 5px),
+    linear-gradient(#f2c14a, #d9952f);
+  border: 3px solid #5c3212;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+.week__graphic .taco--one { left: 26px; transform: rotate(-8deg); }
+.week__graphic .taco--two { right: 26px; transform: rotate(7deg); }
+.week__graphic .lime {
+  left: 50%;
+  top: 24px;
+  width: 44px;
+  height: 44px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #e2ff84 0 18%, #7ed957 19% 58%, #356d28 59%);
+  box-shadow: 0 0 18px rgba(126,217,87,0.3);
+}
+
+.week__graphic--league { background-color: #111816; }
+.week__graphic .rack {
+  left: 28px;
+  bottom: 20px;
+  width: 88px;
+  height: 68px;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background:
+    radial-gradient(circle at 50% 22%, #f4ece2 0 7px, transparent 8px),
+    radial-gradient(circle at 36% 54%, #ffb43a 0 7px, transparent 8px),
+    radial-gradient(circle at 64% 54%, #ff2d8a 0 7px, transparent 8px),
+    radial-gradient(circle at 24% 82%, #1f8a6b 0 7px, transparent 8px),
+    radial-gradient(circle at 50% 82%, #101010 0 7px, transparent 8px),
+    radial-gradient(circle at 76% 82%, #d2382b 0 7px, transparent 8px),
+    rgba(244,236,226,0.12);
+}
+.week__graphic .cue {
+  right: 18px;
+  top: 24px;
+  width: 104px;
+  height: 7px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ead3aa, #6b3219 78%, #f4ece2 78%);
+  transform: rotate(-24deg);
+}
+.week__graphic .eight-ball {
+  right: 32px;
+  bottom: 22px;
+  width: 42px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 42%, #f4ece2 0 12%, #101010 13%);
+  box-shadow: 0 0 18px rgba(255,180,58,0.22);
+}
+
+.week__graphic--wings { background-color: #21100c; }
+.week__graphic .basket {
+  left: 24px;
+  right: 24px;
+  bottom: 20px;
+  height: 44px;
+  border-radius: 12px 12px 22px 22px;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.12) 0 7px, transparent 7px 14px),
+    linear-gradient(#7c2f1b, #3c1710);
+  border: 2px solid #b04a24;
+}
+.week__graphic .wing {
+  width: 58px;
+  height: 44px;
+  border-radius: 62% 44% 50% 58% / 58% 44% 56% 48%;
+  background:
+    radial-gradient(circle at 34% 26%, #ffd47d 0 11%, transparent 12%),
+    radial-gradient(circle at 58% 68%, rgba(116,29,15,0.55) 0 18%, transparent 19%),
+    linear-gradient(135deg, #ff8b38 0 22%, #d64a22 48%, #7f2313 100%);
+  box-shadow:
+    inset -7px -8px 0 rgba(80,18,11,0.28),
+    0 6px 12px rgba(0,0,0,0.35),
+    0 0 16px rgba(210,56,43,0.25);
+}
+.week__graphic .wing::before,
+.week__graphic .wing::after {
+  content: '';
+  position: absolute;
+  background: #f4ece2;
+  z-index: -1;
+}
+.week__graphic .wing::before {
+  right: -29px;
+  top: 18px;
+  width: 34px;
+  height: 10px;
+  border-radius: 999px;
+  box-shadow: inset -2px -1px 0 rgba(0,0,0,0.08);
+}
+.week__graphic .wing::after {
+  right: -43px;
+  top: 11px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 35%, #fff9ed 0 26%, transparent 27%),
+    radial-gradient(circle at 70% 65%, #fff9ed 0 28%, transparent 29%),
+    #f4ece2;
+  box-shadow: inset -3px -3px 0 rgba(0,0,0,0.08);
+}
+.week__graphic .wing--one { left: 42px; top: 29px; transform: rotate(-20deg); }
+.week__graphic .wing--two { right: 42px; top: 35px; transform: scaleX(-1) rotate(-18deg); }
+.week__graphic .dip {
+  left: 50%;
+  top: 34px;
+  width: 34px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f4ece2 0 56%, #2a1f24 57%);
+  transform: translateX(-50%);
+}
+.week__graphic--drinks { background-color: #180f19; }
+.week__graphic .glass {
+  bottom: 22px;
+  width: 46px;
+  height: 76px;
+  clip-path: polygon(12% 0, 88% 0, 72% 100%, 28% 100%);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.14) 12%, transparent 13%),
+    linear-gradient(180deg, transparent 0 34%, rgba(255,45,138,0.9) 35%, rgba(255,180,58,0.75));
+  border: 2px solid rgba(244,236,226,0.65);
+}
+.week__graphic .glass--one { left: 46px; transform: rotate(-7deg); }
+.week__graphic .glass--two { right: 46px; transform: rotate(7deg); }
+.week__graphic .spark {
+  width: 18px;
+  aspect-ratio: 1;
+  background: var(--amber);
+  clip-path: polygon(50% 0, 61% 38%, 100% 50%, 61% 62%, 50% 100%, 39% 62%, 0 50%, 39% 38%);
+  box-shadow: 0 0 16px rgba(255,180,58,0.6);
+}
+.week__graphic .spark--one { left: 50%; top: 26px; }
+.week__graphic .spark--two { left: 34%; top: 66px; transform: scale(0.65); }
+
+.week__graphic--late { background-color: #100f1f; }
+.week__graphic .moon {
+  left: 34px;
+  top: 24px;
+  width: 58px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 70% 34%, var(--bg-2) 0 40%, #f4ece2 41%);
+  box-shadow: 0 0 24px rgba(244,236,226,0.3);
+}
+.week__graphic .clock {
+  right: 34px;
+  top: 28px;
+  width: 58px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 5px solid var(--amber);
+  background:
+    linear-gradient(90deg, transparent 47%, #f4ece2 48% 52%, transparent 53%),
+    linear-gradient(35deg, transparent 48%, #f4ece2 49% 53%, transparent 54%),
+    rgba(0,0,0,0.28);
+  box-shadow: 0 0 22px rgba(255,180,58,0.28);
+}
+.week__graphic .neon-line {
+  left: 20px;
+  right: 20px;
+  bottom: 24px;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--neon), #8fd5ff, var(--amber));
+  box-shadow: 0 0 18px rgba(255,45,138,0.45);
+}
+
+.week__graphic--sunday { background-color: #15140c; }
+.week__graphic .beer {
+  left: 36px;
+  bottom: 22px;
+  width: 48px;
+  height: 76px;
+  border-radius: 7px 7px 10px 10px;
+  border: 3px solid rgba(244,236,226,0.75);
+  background:
+    linear-gradient(180deg, #f4ece2 0 18%, transparent 19%),
+    linear-gradient(90deg, rgba(255,255,255,0.24) 0 18%, transparent 19%),
+    linear-gradient(#f6d15d, #b66b18);
+}
+.week__graphic .beer::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  top: 20px;
+  width: 20px;
+  height: 28px;
+  border: 5px solid rgba(244,236,226,0.7);
+  border-left: 0;
+  border-radius: 0 18px 18px 0;
+}
+.week__graphic .pool-ball {
+  right: 34px;
+  width: 42px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: 0 0 16px rgba(0,0,0,0.35);
+}
+.week__graphic .pool-ball--one {
+  bottom: 52px;
+  background: radial-gradient(circle at 48% 42%, #f4ece2 0 18%, #101010 19%);
+}
+.week__graphic .pool-ball--two {
+  right: 78px;
+  bottom: 24px;
+  background: radial-gradient(circle at 48% 42%, #f4ece2 0 18%, #ffb43a 19%);
+}
 .week__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .week__list li { display: flex; gap: 8px; font-size: 13px; color: var(--ink-dim); }
 .week__list li::before {

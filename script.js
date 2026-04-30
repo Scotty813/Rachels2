@@ -6,7 +6,7 @@
     1: { label: 'Manic Monday',  items: ['Happy hour 3–6pm', 'Free pool 3–8pm', 'APA league 9-ball 7pm', 'Darts tournament 8pm',] },
     2: { label: 'Taco Tuesday',  items: ['$1 beef or chicken tacos', 'Happy hour 3–6pm', 'Free pool 3–8pm', '9-ball cash tourney 8pm'] },
     3: { label: 'League Night',  items: ['APA 8-ball league 7pm', 'Happy hour 3–6pm', 'Free pool 3–8pm', 'Sports on every screen'] },
-    4: { label: '75¢ Wings',     items: ['75¢ wings all night', 'Happy hour 3–6pm', 'Free pool 3–8pm', "Bartender's pick shots"] },
+    4: { label: 'Wing Night',     items: ['75¢ wings all night', 'Happy hour 3–6pm', 'Free pool 3–8pm', "Bartender's pick shots"] },
     5: { label: 'BOGO Drinks',   items: ['BOGO drinks until 8pm*', 'Free pool 3–8pm', '8-ball cash tourney 8pm', '*restrictions apply'] },
     6: { label: 'Saturday Late', items: ['Happy hour 3–6pm', 'Free pool 3–8pm', 'Sports on every screen', 'Open till 3am'] }
   };

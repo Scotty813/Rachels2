@@ -922,11 +922,12 @@ button { font: inherit; cursor: pointer; }
 }
 .apa-card__logo {
   width: 140px; height: 140px; flex-shrink: 0;
-  background: #fff; border-radius: 6px; padding: 14px;
+  background: #fff; border-radius: 6px;
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  overflow: hidden;
 }
-.apa-card__logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.apa-card__logo img { width: 130%; height: 130%; object-fit: contain; }
 .apa-card__copy { flex: 1; min-width: 260px; }
 .apa-card__title {
   font-family: 'Anton', sans-serif; font-size: 28px; line-height: 1;

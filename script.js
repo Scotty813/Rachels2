@@ -116,7 +116,8 @@
   const yr = document.querySelector('[data-year]');
   if (yr) yr.textContent = new Date().getFullYear();
 
-  // Floating nav menu — show once "The Week" section reaches the top of the viewport
+  // Floating nav menu — always visible on mobile (topbar nav is hidden there);
+  // on larger screens, appears once "The Week" section reaches the top of the viewport.
   const navFab = document.querySelector('[data-nav-fab]');
   const navFabToggle = document.querySelector('[data-nav-fab-toggle]');
   const navFabMenu = document.getElementById('nav-fab-menu');
@@ -154,18 +155,39 @@
       if (!v) closeMenu();
     };
 
+    const mobileMq = window.matchMedia('(max-width: 760px)');
+
     if ('IntersectionObserver' in window) {
       const sentinel = document.createElement('span');
       sentinel.setAttribute('aria-hidden', 'true');
       sentinel.style.cssText = 'display:block;width:1px;height:1px;pointer-events:none;';
       weekSection.before(sentinel);
 
+      let lastEntry = null;
+      const evaluate = () => {
+        if (mobileMq.matches) {
+          setVisible(true);
+          return;
+        }
+        if (!lastEntry) return;
+        setVisible(!lastEntry.isIntersecting && lastEntry.boundingClientRect.top < 0);
+      };
+
       const observer = new IntersectionObserver(([entry]) => {
-        setVisible(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+        lastEntry = entry;
+        evaluate();
       });
       observer.observe(sentinel);
+
+      if (mobileMq.addEventListener) mobileMq.addEventListener('change', evaluate);
+      else if (mobileMq.addListener) mobileMq.addListener(evaluate);
+      evaluate();
     } else {
       const onScroll = () => {
+        if (mobileMq.matches) {
+          setVisible(true);
+          return;
+        }
         setVisible(weekSection.getBoundingClientRect().top <= 0);
       };
       onScroll();

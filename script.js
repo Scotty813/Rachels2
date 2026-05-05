@@ -41,7 +41,7 @@
     4: {
       label: "Wing Night",
       items: [
-        "75¢ wings all night",
+        "99¢ wings all night",
         "Happy hour 3–6pm",
         "Free pool 3–8pm",
         "Bartender's pick shots",
